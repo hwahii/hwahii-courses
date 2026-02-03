@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hwahii 課程 - 專為不同人生階段設計的系統化課程">
+    <title>Hwahii 課程</title>
+    <link rel="stylesheet" href="shared/styles.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            text-align: center;
+            padding: 4rem 0 2rem;
+        }
+
+        .header h1 {
+            margin-bottom: 1rem;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--bg-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .course-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #1e293b;
+        }
+
+        .course-card p {
+            color: #64748b;
+            font-size: 1rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .course-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #f1f5f9;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: #475569;
+            margin-top: 1rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            color: #64748b;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Hwahii 課程</h1>
+            <p>專為不同人生階段設計的系統化課程，幫助你建立可持續的生活與工作系統</p>
+        </header>
+
+        <div class="courses-grid">
+            <a href="course-1-family/" class="course-card">
+                <div class="course-icon">👨‍👩‍👧‍👦</div>
+                <h2>家庭 × 生產力系統</h2>
+                <p>專為新手爸媽與家庭主責者設計，把被切碎的生活變成可預測的節奏</p>
+                <span class="course-tag">家庭責任者</span>
+            </a>
+
+            <a href="course-2-reset/" class="course-card">
+                <div class="course-icon">🔄</div>
+                <h2>生活自理重啟系統</h2>
+                <p>從混亂到有序，重建基本生活節奏與自我照顧能力</p>
+                <span class="course-tag">生活重建</span>
+            </a>
+
+            <a href="course-3-knowledge/" class="course-card">
+                <div class="course-icon">📚</div>
+                <h2>知識系統 × 輸出引擎</h2>
+                <p>建立個人知識管理系統，將學習轉化為持續的價值輸出</p>
+                <span class="course-tag">知識工作者</span>
+            </a>
+
+            <a href="course-6-transition/" class="course-card">
+                <div class="course-icon">🎯</div>
+                <h2>中年轉型決策工作坊</h2>
+                <p>在人生十字路口做出清晰決策，找到下一階段的方向</p>
+                <span class="course-tag">職涯轉型</span>
+            </a>
+        </div>
+
+        <footer class="footer">
+            <p>© 2026 Hwahii. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
