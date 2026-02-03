@@ -205,7 +205,7 @@ body {
 
 .problem-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     max-width: 1000px;
     margin: 0 auto;
@@ -486,7 +486,7 @@ body {
 
 .testimonial-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     max-width: 1000px;
     margin: 0 auto;
@@ -739,11 +739,23 @@ body {
 }
 
 .footer-cta .btn-primary {
+    background: var(--accent);
+    color: var(--bg-dark);
     font-size: 1.125rem;
     padding: 1.125rem 3rem;
 }
 
 /* =============== RESPONSIVE =============== */
+@media (max-width: 1024px) {
+
+    .problem-grid,
+    .framework-grid,
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+    }
+}
+
 @media (max-width: 768px) {
     .hero {
         padding: 4rem 0;
