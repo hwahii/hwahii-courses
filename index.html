@@ -4,121 +4,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Hwahii 課程 - 專為不同人生階段設計的系統化課程">
-    <title>Hwahii 課程</title>
-    <link rel="stylesheet" href="shared/styles.css">
+    <meta name="description" content="Hwahii 課程體系 - 專為不同人生階段設計的系統化解決方案">
+    <title>Hwahii 課程體系 | 系統化你的人生</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1e40af;
-            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* Warm & Joyful Palette */
+            --bg-warm: #fffcf8;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border: #f1f5f9;
+            --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+
+            /* Brand Accent */
+            --brand-accent: #e86a33;
+
+            /* Course Colors */
+            --c1-color: #e86a33;
+            /* Family - Warm Orange */
+            --c2-color: #d946ef;
+            /* Reset - Soft Purple/Pink */
+            --c3-color: #06b6d4;
+            /* Knowledge - Cyan */
+            --c6-color: #10b981;
+            /* Transition - Emerald */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-warm);
+            /* Soft morning light gradient */
+            background-image:
+                radial-gradient(at 0% 0%, rgba(232, 106, 51, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(254, 243, 199, 0.4) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        .header {
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0 4rem;
             text-align: center;
-            padding: 4rem 0 2rem;
         }
 
-        .header h1 {
-            margin-bottom: 1rem;
-            background: var(--bg-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .brand-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.25rem;
+            background: #fff;
+            border: 1px solid rgba(232, 106, 51, 0.2);
+            border-radius: 999px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-soft);
         }
 
-        .header p {
-            color: #64748b;
+        .brand-pill span {
+            color: var(--brand-accent);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
         }
 
+        /* Grid Section - Strict 4-column layout to prevent orphans */
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
-            padding: 3rem 0;
+            padding: 2rem 0 6rem;
         }
 
+        /* Card Design */
         .course-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
             text-decoration: none;
-            color: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
             display: flex;
             flex-direction: column;
-            position: relative;
-            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            height: 100%;
         }
 
-        .course-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--bg-gradient);
-            transform: scaleX(0);
+        /* Hover Effects */
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Dynamic Borders on Hover */
+        .course-card[data-theme="family"]:hover {
+            border-color: rgba(232, 106, 51, 0.4);
+        }
+
+        .course-card[data-theme="reset"]:hover {
+            border-color: rgba(217, 70, 239, 0.4);
+        }
+
+        .course-card[data-theme="knowledge"]:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+        }
+
+        .course-card[data-theme="transition"]:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        /* Card Content */
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
             transition: transform 0.3s ease;
         }
 
-        .course-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        .course-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
-        .course-card:hover::before {
-            transform: scaleX(1);
+        /* Icon Colors - Warm & Joyful style */
+        .course-card[data-theme="family"] .card-icon {
+            background: #fff0eb;
+            color: var(--c1-color);
         }
 
-        .course-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .course-card[data-theme="reset"] .card-icon {
+            background: #fdf2f8;
+            color: var(--c2-color);
+        }
+
+        .course-card[data-theme="knowledge"] .card-icon {
+            background: #ecfeff;
+            color: var(--c3-color);
+        }
+
+        .course-card[data-theme="transition"] .card-icon {
+            background: #ecfdf5;
+            color: var(--c6-color);
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            display: block;
+            opacity: 0.8;
+        }
+
+        .course-card[data-theme="family"] .tag {
+            color: var(--c1-color);
+        }
+
+        .course-card[data-theme="reset"] .tag {
+            color: var(--c2-color);
+        }
+
+        .course-card[data-theme="knowledge"] .tag {
+            color: var(--c3-color);
+        }
+
+        .course-card[data-theme="transition"] .tag {
+            color: var(--c6-color);
         }
 
         .course-card h2 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
+            color: var(--text-primary);
             margin-bottom: 0.75rem;
-            color: #1e293b;
+            font-weight: 700;
         }
 
         .course-card p {
-            color: #64748b;
-            font-size: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
             line-height: 1.6;
+            margin-bottom: 1.5rem;
             flex-grow: 1;
         }
 
-        .course-tag {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: #f1f5f9;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            color: #475569;
-            margin-top: 1rem;
+        .card-link {
+            font-weight: 600;
+            font-size: 0.9375rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
         }
 
+        .course-card[data-theme="family"] .card-link {
+            color: var(--c1-color);
+        }
+
+        .course-card[data-theme="reset"] .card-link {
+            color: var(--c2-color);
+        }
+
+        .course-card[data-theme="knowledge"] .card-link {
+            color: var(--c3-color);
+        }
+
+        .course-card[data-theme="transition"] .card-link {
+            color: var(--c6-color);
+        }
+
+        .course-card:hover .card-link {
+            transform: translateX(5px);
+        }
+
+        /* Footer */
         .footer {
-            text-align: center;
-            padding: 3rem 0 2rem;
-            color: #64748b;
             margin-top: auto;
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            text-align: center;
         }
 
-        @media (max-width: 768px) {
+        .footer p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive - Fix orphans */
+        @media (max-width: 1024px) {
+            .hero {
+                padding: 4rem 0 3rem;
+            }
+
             .courses-grid {
+                /* Force 2x2 layout on tablet */
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .courses-grid {
+                /* Force 1x1 layout on mobile */
                 grid-template-columns: 1fr;
             }
         }
@@ -127,43 +296,54 @@
 
 <body>
     <div class="container">
-        <header class="header">
-            <h1>Hwahii 課程</h1>
-            <p>專為不同人生階段設計的系統化課程，幫助你建立可持續的生活與工作系統</p>
+        <header class="hero">
+            <div class="brand-pill">
+                <span>Hwahii</span> 課程體系
+            </div>
+            <h1>系統化你的人生</h1>
+            <p>不是給你更多資訊，而是給你一套能運作的系統。<br>從家庭、生活自理、知識管理到職涯決策，全面升級。</p>
         </header>
 
-        <div class="courses-grid">
-            <a href="course-1-family/" class="course-card">
-                <div class="course-icon">👨‍👩‍👧‍👦</div>
+        <section class="courses-grid">
+            <!-- Course 1 -->
+            <a href="course-1-family/" class="course-card" data-theme="family">
+                <span class="tag">Family & Productivity</span>
+                <div class="card-icon">🏠</div>
                 <h2>家庭 × 生產力系統</h2>
-                <p>專為新手爸媽與家庭主責者設計，把被切碎的生活變成可預測的節奏</p>
-                <span class="course-tag">家庭責任者</span>
+                <p>專為新手爸媽設計。不再被家務和育兒瑣事淹沒，建立一個能容納突發狀況的家庭節奏。</p>
+                <div class="card-link">查看課程 →</div>
             </a>
 
-            <a href="course-2-reset/" class="course-card">
-                <div class="course-icon">🔄</div>
+            <!-- Course 2 -->
+            <a href="course-2-reset/" class="course-card" data-theme="reset">
+                <span class="tag">Life Reset</span>
+                <div class="card-icon">🔄</div>
                 <h2>生活自理重啟系統</h2>
-                <p>從混亂到有序，重建基本生活節奏與自我照顧能力</p>
-                <span class="course-tag">生活重建</span>
+                <p>從混亂到有序。適合感到「甚至連房間都整理不好」的你，重建最基本的生活掌控感。</p>
+                <div class="card-link">查看課程 →</div>
             </a>
 
-            <a href="course-3-knowledge/" class="course-card">
-                <div class="course-icon">📚</div>
+            <!-- Course 3 -->
+            <a href="course-3-knowledge/" class="course-card" data-theme="knowledge">
+                <span class="tag">Knowledge System</span>
+                <div class="card-icon">🧠</div>
                 <h2>知識系統 × 輸出引擎</h2>
-                <p>建立個人知識管理系統，將學習轉化為持續的價值輸出</p>
-                <span class="course-tag">知識工作者</span>
+                <p>停止無效囤積。打造一個「這輩子夠用」的知識庫，將你的輸入轉化為源源不絕的價值輸出。</p>
+                <div class="card-link">查看課程 →</div>
             </a>
 
-            <a href="course-6-transition/" class="course-card">
-                <div class="course-icon">🎯</div>
+            <!-- Course 6 -->
+            <a href="course-6-transition/" class="course-card" data-theme="transition">
+                <span class="tag">Career Transition</span>
+                <div class="card-icon">🧭</div>
                 <h2>中年轉型決策工作坊</h2>
-                <p>在人生十字路口做出清晰決策，找到下一階段的方向</p>
-                <span class="course-tag">職涯轉型</span>
+                <p>面對職涯十字路口，不敢冒險又怕後悔？用最小風險測試你的下一個可能性。</p>
+                <div class="card-link">查看課程 →</div>
             </a>
-        </div>
+        </section>
 
         <footer class="footer">
-            <p>© 2026 Hwahii. All rights reserved.</p>
+            <p>© 2026 Hwahii Research. All rights reserved.</p>
         </footer>
     </div>
 </body>
